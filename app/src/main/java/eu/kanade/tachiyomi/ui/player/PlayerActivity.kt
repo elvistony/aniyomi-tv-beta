@@ -1285,6 +1285,12 @@ class PlayerActivity : BaseActivity() {
     // Gesture Functions -- End --
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+
+        if (!playerPreferences.hideControls().get()) {
+            playerControls.hideControls(hide=false)
+            playerControls.requestFocus()
+        }
+
         when (keyCode) {
             KeyEvent.KEYCODE_VOLUME_UP -> {
                 verticalScrollRight(1 / maxVolume.toFloat())
@@ -1319,7 +1325,7 @@ class PlayerActivity : BaseActivity() {
              doubleTapPlayPause()
              return true
              }
-             */
+
             KeyEvent.KEYCODE_DPAD_RIGHT -> {
                 doubleTapSeek(playerPreferences.skipLengthPreference().get())
                 return true
@@ -1327,14 +1333,16 @@ class PlayerActivity : BaseActivity() {
             KeyEvent.KEYCODE_DPAD_LEFT -> {
                 doubleTapSeek(-playerPreferences.skipLengthPreference().get())
                 return true
-            }
+            }*/
             KeyEvent.KEYCODE_SPACE -> {
                 doubleTapPlayPause()
                 return true
             }
             // add other keycodes as needed
+
             else -> {
-                if (player.onKey(event!!)) return true
+//                if (player.onKey(event!!)) return true
+                return true
             }
         }
         return super.onKeyDown(keyCode, event)

@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:ignore="RtlHardcoded,HardcodedText">
 
     <!-- Locked player check -->
@@ -52,6 +53,9 @@
                 android:layout_marginTop="10dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Go back"
+                android:nextFocusRight="@+id/episodeListBtn"
+
+                android:nextFocusDown="@+id/play_btn"
                 android:src="@drawable/ic_arrow_back_20dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/titleMainTxt"
@@ -68,8 +72,8 @@
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:maxLines="1"
-                android:clickable="true"
-                android:focusable="true"
+                android:clickable="false"
+                android:focusable="false"
                 app:layout_constraintLeft_toRightOf="@id/backArrowBtn"
                 app:layout_constraintRight_toLeftOf="@id/episodeListBtn"
                 app:layout_constraintTop_toTopOf="parent"
@@ -85,8 +89,8 @@
                 android:textSize="12sp"
                 android:textStyle="italic"
                 android:maxLines="1"
-                android:clickable="true"
-                android:focusable="true"
+                android:clickable="false"
+                android:focusable="false"
                 app:layout_constraintLeft_toRightOf="@id/backArrowBtn"
                 app:layout_constraintRight_toLeftOf="@id/episodeListBtn"
                 app:layout_constraintTop_toBottomOf="@id/titleMainTxt"
@@ -98,6 +102,8 @@
                 android:layout_height="50dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
+                android:nextFocusDown="@+id/play_btn"
+                android:nextFocusRight="@+id/toggleAutoplay"
                 android:background="@android:color/transparent"
                 android:contentDescription="Episode list"
                 android:src="@drawable/ic_navigate_next_20dp"
@@ -114,6 +120,8 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
+                android:nextFocusRight="@+id/episodeListBtn"
+                android:nextFocusDown="@+id/play_btn"
                 android:background="?attr/selectableItemBackground"
                 android:contentDescription="Settings"
                 android:src="@drawable/ic_overflow_20dp"
@@ -128,6 +136,8 @@
                 android:layout_height="50dp"
                 android:background="?attr/selectableItemBackground"
                 android:contentDescription="Tracks"
+                android:nextFocusRight="@+id/settingsBtn"
+                android:nextFocusDown="@+id/play_btn"
                 android:src="@drawable/ic_video_settings_20dp"
                 app:layout_constraintLeft_toRightOf="@id/toggleAutoplay"
                 app:layout_constraintRight_toLeftOf="@id/settingsBtn"
@@ -139,6 +149,8 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 tools:checked="true"
+                android:nextFocusRight="@+id/streamsBtn"
+                android:nextFocusDown="@+id/play_btn"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/streamsBtn"
                 app:layout_constraintTop_toTopOf="@id/streamsBtn" />
@@ -176,6 +188,8 @@
             android:id="@+id/middleControlsGroup"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:nextFocusUp="@+id/episodeListBtn"
+            android:nextFocusDown="@+id/controls_skip_intro_btn"
             android:visibility="visible">
 
             <ImageButton
@@ -200,7 +214,12 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="Play/Pause"
                 android:textColor="#FFF"
+                android:nextFocusForward="@+id/episodeListBtn"
                 android:visibility="gone"
+                android:nextFocusUp="@+id/streamsBtn"
+                android:nextFocusLeft="@+id/prevBtn"
+                android:nextFocusRight="@+id/episodeListBtn"
+                android:nextFocusDown="@+id/controls_skip_intro_btn"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -264,6 +283,7 @@
                 android:id="@+id/bottomLeftControlsGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:visibility="invisible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent">
 
@@ -273,6 +293,7 @@
                     android:layout_height="match_parent"
                     android:background="?attr/selectableItemBackground"
                     android:contentDescription="Lock player"
+                    android:visibility="invisible"
                     android:src="@drawable/ic_lock_20dp"
                     app:tint="?attr/colorOnPrimarySurface" />
 
@@ -283,6 +304,7 @@
                     android:background="?attr/selectableItemBackground"
                     android:contentDescription="Rotate player"
                     android:onClick="rotatePlayer"
+                    android:visibility="invisible"
                     android:src="@drawable/ic_screen_rotation_20dp"
                     app:tint="?attr/colorOnPrimarySurface" />
 
@@ -303,6 +325,7 @@
                 android:id="@+id/bottomRightControlsGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
+                android:nextFocusUp="@+id/play_btn"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toRightOf="parent">
 
@@ -312,6 +335,7 @@
                     android:layout_height="match_parent"
                     android:backgroundTint="?attr/colorPrimary"
                     android:onClick="skipIntro"
+                    android:nextFocusDown="@+id/playbackSeekbar"
                     android:text=""
                     android:textSize="12sp"
                     tools:text="+85s"
@@ -320,6 +344,7 @@
                 <ImageButton
                     android:id="@+id/cycleViewModeBtn"
                     android:layout_width="50dp"
+                    android:visibility="invisible"
                     android:layout_height="match_parent"
                     android:background="?attr/selectableItemBackground"
                     android:contentDescription="Cycle view modes"
@@ -329,11 +354,12 @@
                 <ImageButton
                     android:id="@+id/pipBtn"
                     android:layout_width="50dp"
+
                     android:layout_height="match_parent"
                     android:background="?android:attr/selectableItemBackground"
                     android:contentDescription="@string/action_player_pip"
                     android:src="@drawable/ic_picture_in_picture_20dp"
-                    android:visibility="visible"
+                    android:visibility="invisible"
                     app:tint="?attr/colorOnPrimarySurface" />
 
             </LinearLayout>
@@ -347,6 +373,7 @@
             android:layout_height="match_parent"
             android:layout_marginHorizontal="10dp"
             android:layout_marginBottom="10dp"
+            android:nextFocusUp="@+id/play_btn"
             android:visibility="visible">
 
             <TextView
@@ -367,6 +394,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="80"
+                android:nextFocusUp="@+id/playbackSeekbar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/playbackPositionBtn"
                 app:layout_constraintRight_toLeftOf="@id/playbackDurationBtn" />
@@ -398,8 +426,8 @@
         android:layout_marginLeft="18dp"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="gone"
-        tools:visibility="visible">
+        android:visibility="invisible"
+        tools:visibility="invisible">
 
         <TextView
             android:id="@+id/volumeText"
@@ -440,8 +468,8 @@
         android:layout_marginRight="18dp"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="gone"
-        tools:visibility="visible">
+        android:visibility="invisible"
+        tools:visibility="invisible">
 
         <TextView
             android:id="@+id/brightnessText"
